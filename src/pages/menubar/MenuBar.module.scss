@@ -1,0 +1,65 @@
+.wrap_Menubar {
+  display: flex;
+  flex-direction: column;
+}
+.wrap_Menubar_content {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.wrap_Menubar_content.TrangChu {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(255, 184, 0, 1);
+  border-radius: 15px;
+  margin-right: 30px;
+}
+
+.wrap_Menubar_content.QuanLy {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(255, 184, 0, 1);
+  border-radius: 15px;
+  margin-right: 30px;
+}
+.wrap_Menubar_content.Doi {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(255, 184, 0, 1);
+  border-radius: 15px;
+  margin-right: 30px;
+}
+.wrap_Menubar_content.Caidat {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(255, 184, 0, 1);
+  border-radius: 15px;
+  margin-right: 30px;
+}
+.wrap_Menubar_txt {
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
+.wrap_Menubar_txt_lui {
+  margin-top: 5px;
+  margin-left: 60px;
+}
+.wrap_Menubar_content .active {
+  background-color: rgba(255, 184, 0, 1);
+  border-radius: 15px;
+  margin-right: 30px;
+}

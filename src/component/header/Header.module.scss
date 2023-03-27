@@ -1,0 +1,14 @@
+.header-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header-left {
+  width: 40%;
+}
+.header-right-search {
+  width: 40%;
+}
+.wrap-header {
+  padding: 30px;
+}

@@ -1,0 +1,14 @@
+.wrap_Menubar {
+  display: flex;
+  flex-direction: column;
+}
+.wrap_Menubar_content {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.wrap_Menubar_txt {
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
