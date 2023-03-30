@@ -1,19 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { publicRoutes } from "./routes/Routes";
+import AppProvider from "./component/context/AppProvider";
 
 function App() {
   return (
     <Router>
-    <div className="App">
-      <Routes>
-        {publicRoutes.map((route, index) => {
-          const Page = route.component;
-          return <Route key={index} path={route.path} element={<Page />} />;
-        })}
-      </Routes>
-    </div>
-  </Router>
+            <div className="App">
+                  <AppProvider>
+                    <Routes>
+                      {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        return <Route key={index} path={route.path} element={<Page />} />;
+                      })}
+                    </Routes>
+                  </AppProvider>
+            </div>
+    </Router>
   );
 }
 

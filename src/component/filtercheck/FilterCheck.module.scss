@@ -1,0 +1,32 @@
+.wrap_FilterCheck {
+    background-color: white;
+    height: 85vh;
+    border-radius: 24px;
+    padding: 15px;
+  }
+  .radioFilterCheck {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .FilterDate {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .wrap_FilterBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    //   align-items: center;
+    margin-top: 15px;
+  }
+  .filterBtn {
+    padding: 7px 40px;
+    border-radius: 10px;
+    background-color: white;
+    border-color: rgba(255, 153, 60, 1);
+    color: rgba(255, 153, 60, 1);
+  }

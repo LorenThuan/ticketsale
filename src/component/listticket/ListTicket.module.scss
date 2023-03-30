@@ -48,14 +48,20 @@
   margin-bottom: 0px;
   margin-left: 5px;
   color: rgba(255, 153, 60, 1);
+  cursor: pointer;
 }
 .state_txt {
   font-size: 18px;
   margin-bottom: 0px;
+  margin-left: 5px;
   color: rgb(208 219 230);
 }
 .wrap_Table {
   background-color: rgba(241, 244, 248, 1);
+  cursor: pointer;
+}
+.wrap_Table_body {
+  cursor: pointer;
 }
 .tblSk {
   margin-top: 15px;

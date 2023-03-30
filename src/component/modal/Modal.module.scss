@@ -1,0 +1,32 @@
+.WrapFilterModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    //   background-color: red;
+    color: rgba(255, 153, 60, 1);
+    border: 1px solid rgba(255, 153, 60, 1);
+    margin-left: 190px;
+    padding: 20px 40px;
+    font-size: 18px;
+  }
+  .WrapFilterTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-check-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .checkModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+  .radioModal {
+    margin-top: 10px;
+  }

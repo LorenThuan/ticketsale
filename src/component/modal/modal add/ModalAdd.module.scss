@@ -1,0 +1,69 @@
+.wrap_ModalAdd {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+  }
+  .contentFilter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+  }
+  .txtSao {
+    color: rgba(253, 89, 89, 1);
+  }
+  .txtTen {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .inp_Ten {
+    width: 300px;
+    border: 1px solid gray;
+    height: 35px;
+    border-radius: 10px;
+  }
+  .inp_Ngay {
+    border-radius: 10px;
+    height: 35px;
+  }
+  .txtNgay {
+    margin-bottom: 0px;
+  }
+  .Vele {
+    display: flex;
+    flex-direction: row;
+    //   justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .WrapFilterModal {
+    color: rgba(255, 153, 60, 1);
+    border: 1px solid rgba(255, 153, 60, 1);
+    text-align: center;
+    font-size: 18px;
+  }
+  .WrapFilterModal_Luu {
+    color: white;
+    border: 1px solid rgba(255, 153, 60, 1);
+    background-color: rgba(255, 153, 60, 1);
+    font-size: 18px;
+  }
+  .inp_ve {
+    background-color: rgba(241, 244, 248, 1);
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .inp_songuoi {
+    background-color: rgba(241, 244, 248, 1);
+    border: none;
+    padding: 5px;
+    width: 80px;
+    border-radius: 10px;
+  }
+  .txtVe {
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }

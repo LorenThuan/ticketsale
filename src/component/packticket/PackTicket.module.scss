@@ -1,0 +1,89 @@
+.wrap_ListSK {
+    background-color: white;
+    height: 85vh;
+    border-radius: 24px;
+    padding: 15px;
+  }
+  
+  .ListSK-search {
+    width: 40%;
+  }
+  .ListSK-filter {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .btnAdd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 153, 60, 1);
+    border: 2px solid rgba(255, 153, 60, 1);
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  .btnAdd_txt {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  .btnFile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(255, 153, 60, 1);
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+  }
+  .btnLoc_txt {
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    color: rgba(255, 153, 60, 1);
+    cursor: pointer;
+  }
+  .state_txt {
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    color: rgba(3, 172, 0, 1);
+  }
+  .wrap_Table {
+    background-color: rgba(241, 244, 248, 1);
+    cursor: pointer;
+  }
+  .wrap_Table_body {
+    cursor: pointer;
+  }
+  .tblSk {
+    margin-top: 15px;
+  }
+  .wrap_state {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(222, 247, 224, 1);
+    padding: 2px;
+    border-radius: 10px;
+    background-color: rgba(222, 247, 224, 1);
+  }
+  .wrap_up {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: rgba(255, 153, 60, 1);
+  }

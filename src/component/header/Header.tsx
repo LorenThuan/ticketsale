@@ -20,7 +20,7 @@ const Header = () => {
         </Col>
         <Col lg={10} className={cx("header-right")}>
           <Search
-            placeholder="input search text"
+            placeholder="Search"
             className={cx("header-right-search")}
           />
           <div>
