@@ -19,10 +19,10 @@ const CheckTicket = () => {
         <Col lg={2}>
           <Menubar />
         </Col>
-        <Col lg={8}>
+        <Col lg={7}>
           <ExamTicket />
         </Col>
-        <Col lg={2}>
+        <Col lg={3}>
           <FilterCheck />
         </Col>
       </Row>

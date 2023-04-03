@@ -4,12 +4,13 @@ import Menubar from "../../component/menubar/MenuBar";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import Home from "../../component/home/Home"
 
 import styles from "./Home.module.scss";
 import classnames from "classnames/bind";
 
 const cx = classnames.bind(styles);
-const Home = () => {
+const Homepage = () => {
   return (
     <Container fluid className={cx("wrap_Home")}>
       <Header />
@@ -18,14 +19,15 @@ const Home = () => {
           <Menubar />
         </Col>
         <Col lg={10}>
-          <img
+          {/* <img
             // src={require("../../assentce/Chart.png")}
             // className={cx("img")}
-          />
+          /> */}
+          <Home />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default Home;
+export default Homepage;

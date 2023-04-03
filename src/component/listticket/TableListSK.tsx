@@ -29,7 +29,7 @@ const TableListSK = () => {
           </tr>
         </thead>
         <tbody className={cx("wrap_Table_body")}>
-          <tr onClick={handleShow}>
+          <tr>
             <td>1</td>
             <td>ALT20210501</td>
             <td>123456789034</td>
@@ -40,7 +40,7 @@ const TableListSK = () => {
                 <h6 className={cx("state_txt")}>Đã sử dụng</h6>
               </div>
             </td>
-            <td>14/04/2021</td>
+            <td onClick={handleShow}>14/04/2021</td>
             <td>14/04/2021</td>
             <td>Cổng 1</td>
           </tr>

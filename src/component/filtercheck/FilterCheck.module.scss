@@ -5,15 +5,23 @@
     padding: 15px;
   }
   .radioFilterCheck {
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
+    margin-left: 12px;
   }
+
+  .radioFilterCheckCustom {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .FilterDate {
     margin-top: 15px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
   .wrap_FilterBtn {
@@ -29,4 +37,12 @@
     background-color: white;
     border-color: rgba(255, 153, 60, 1);
     color: rgba(255, 153, 60, 1);
+  }
+
+  .FilterTicket {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }

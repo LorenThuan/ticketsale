@@ -1,22 +1,66 @@
-import React, { useState, useContext } from "react";
-import { Button, Checkbox, Modal } from "antd";
+import React, { useState, useContext, useEffect } from "react";
+import { Button, Checkbox, Modal, Space } from "antd";
 import { Input, Typography, Radio, Select, Tag } from "antd";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { AppContext } from "../../context/AppProvider";
 import styles from "./ModalUpdate.module.scss";
 import classNames from "classnames/bind";
+import { getDatabase, ref, child, push, update } from "firebase/database";
+import { dataref } from "../../lib/Firebase";
+import { useDispatch } from "react-redux";
+import TodoSlice from "../../reudux/slices/TodoSlice";  
+interface TicketsIn {
+  id?: string;
+  nameTick?: string;
+  dataUse?: string;
+  dateOutUse?: string;
+  price?: number;
+  priceCombo?: number;
+  amoutCombo?: number;
+  state?: boolean;
+  nameTickSK?: string;
+}
+type Props = { data: TicketsIn };
 
 const cx = classNames.bind(styles);
-const ModalUpdate: React.FC = () => {
+const ModalUpdate = (props: Props) => {
   const { update, setUpdate } = useContext(AppContext);
+
+  const [Tickets, setTickets] = useState<TicketsIn>({
+    id: props.data.id,
+    nameTick: props.data.nameTick,
+    dataUse: props.data.dataUse,
+    dateOutUse: props.data.dateOutUse,
+    price: props.data.price,
+    priceCombo: props.data.priceCombo,
+    amoutCombo: props.data.amoutCombo,
+    state: props.data.state,
+    nameTickSK: props.data.nameTickSK,
+  });
+
+  const [checkOne, setCheckOne] = useState<boolean>(false);
+  const [checkMulti, setCheckMulti] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setUpdate(true);
   };
 
-  const handleOk = () => {
-    setUpdate(false);
+  console.log(Tickets);
+  const handleUpdate = () => {
+    // setUpdate(false);
+    // const db = getDatabase();
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    // const updates: any = {};
+    // updates["ListTicket/" + props.data.id] = Tickets;
+
+    // dataref
+    //   .ref("ListTicket/" + props.data.id)
+    //   .update(Tickets)
+    //   .catch(alert);
+    // update(ref(db), updates);
+    dispatch(TodoSlice.actions.updatePackTicket(Tickets));
   };
 
   const handleCancel = () => {
@@ -27,7 +71,6 @@ const ModalUpdate: React.FC = () => {
     <>
       <Modal
         open={update}
-        onOk={handleOk}
         onCancel={handleCancel}
         centered
         className={cx("WrapFilterTitle")}
@@ -40,8 +83,8 @@ const ModalUpdate: React.FC = () => {
             Hủy
           </Button>,
           <Button
-            key="back"
-            onClick={handleCancel}
+            key="Add"
+            onClick={handleUpdate}
             className={cx("WrapFilterModal_Luu")}
           >
             Lưu
@@ -67,32 +110,64 @@ const ModalUpdate: React.FC = () => {
                 <div>
                   <input
                     type="text"
+                    onChange={(e) =>
+                      setTickets({
+                        ...Tickets,
+                        id: e.target.value,
+                      })
+                    }
+                    defaultValue={props.data.id}
+                    disabled={true}
                     className={cx("inp_Ten")}
                     placeholder="PKG20210502"
                   />
                 </div>
               </div>
-              <div>
-                <label className={cx("txtTen")}>Tên sự kiện</label>
+              {props.data.nameTick === "Gói sự kiện" ? (
 
                 <div>
-                  <input
-                    type="text"
-                    className={cx("inp_Ten")}
-                    placeholder="Hội chợ triển lãm hàng tiêu dùng 2021"
-                  />
+                    <label className={cx("txtTen")}>Tên sự kiện</label>
+
+                    <div>
+                      <input
+                        type="text"
+                        className={cx("inp_Ten")}
+                        defaultValue={props.data.nameTickSK}
+                        placeholder="Hội chợ triển lãm hàng tiêu dùng 2023"
+                      />
+                    </div>
                 </div>
-              </div>
+                ) : null}
             </div>
             <div>
               <Row>
                 <Col>
                   <p className={cx("txtNgay")}>Ngày áp dụng</p>
-                  <input type="date" className={cx("inp_Ngay")} />
+                  <input
+                    type="date"
+                    className={cx("inp_Ngay")}
+                    defaultValue={props.data.dataUse}
+                    onChange={(e) =>
+                      setTickets({
+                        ...Tickets,
+                        dataUse: e.target.value,
+                      })
+                    }
+                  />
                 </Col>
                 <Col>
                   <p className={cx("txtNgay")}>Ngày hết hạn</p>
-                  <input type="date" className={cx("inp_Ngay")} />
+                  <input
+                    type="date"
+                    className={cx("inp_Ngay")}
+                    defaultValue={props.data.dateOutUse}
+                    onChange={(e) =>
+                      setTickets({
+                        ...Tickets,
+                        dateOutUse: e.target.value,
+                      })
+                    }
+                  />
                 </Col>
               </Row>
             </div>
@@ -100,44 +175,83 @@ const ModalUpdate: React.FC = () => {
               <h5 className={cx("txtNgay")}>Giá vé áp dụng </h5>
             </div>
             <div className={cx("Vele")}>
-              <Checkbox />
+              <Checkbox
+                  checked={checkOne}
+                  onChange={(e) => {
+                    setCheckOne(e.target.checked);
+                  }}
+                />
               <p className={cx("txtVe")}>Vé lẻ (vnđ/vé) với giá</p>
               <input
                 type="text"
                 className={cx("inp_ve")}
                 placeholder="Giá vé"
+                defaultValue={props.data.price}
+                onChange={(e) =>
+                  setTickets({
+                    ...Tickets,
+                    price: parseInt(e.target.value),
+                  })
+                }
               />
               /vé
             </div>
             <div className={cx("Vele")}>
-              <Checkbox />
+              <Checkbox
+                  checked={checkMulti}
+                  onChange={(e) => {
+                    setCheckMulti(e.target.checked);
+                  }}
+                />
               <p className={cx("txtVe")}>Combo vé với giá</p>
               <input
                 type="text"
+                disabled={!checkMulti}
                 className={cx("inp_ve")}
                 placeholder="Giá vé"
+                defaultValue={props.data.priceCombo}
+                onChange={(e) =>
+                  setTickets({
+                    ...Tickets,
+                    priceCombo: parseInt(e.target.value),
+                  })
+                }
               />
               /
               <input
                 type="text"
                 className={cx("inp_songuoi")}
-                placeholder="Giá vé"
+                disabled={!checkMulti}
+                placeholder="vé"
+                defaultValue={props.data.amoutCombo}
+                onChange={(e) =>
+                  setTickets({
+                    ...Tickets,
+                    amoutCombo: parseInt(e.target.value),
+                  })
+                }
               />
               vé
             </div>
             <div>
               <h5>Tình trạng</h5>
               <div>
-                <Input.Group style={{ display: "flex" }}>
-                  <Select defaultValue="Medium">
-                    <Select.Option value="High" label="High">
+              <Space.Compact style={{ display: "flex" }}>
+                  <Select
+                    defaultValue={props.data.state}
+                    onChange={(value: boolean) => {
+                      // console.log(value);
+                      setTickets({ ...Tickets, state: value });
+                    }}
+                  >
+                    <Select.Option value={true} label="Đang áp dụng">
                       Đang áp dụng
                     </Select.Option>
-                    <Select.Option value="Medium" label="Medium">
+                    <Select.Option value={false} label="Tắt">
                       Tắt
                     </Select.Option>
                   </Select>
-                </Input.Group>
+                </Space.Compact>
               </div>
             </div>
             <div>

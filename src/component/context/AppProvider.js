@@ -7,14 +7,20 @@ function AppProvider({ children }) {
   const [update, setUpdate] = useState(false);
   const [add, setAdd] = useState(false);
 
-  const [active, setActive] = useState("");
+  const [status, setStatus] = useState("Tất cả");
+  const [item, setItem] = useState({});
+  const [active, setActive] = useState("QuanLy");
+  const [packed, setPacked] = useState(true);
 
   const clearState = () => {
     setShow(false);
     setAdd(false);
     setUpdate(false);
+    setPacked(true);
     setActive("");
+    setStatus("");
     setchangeDate(false);
+    setItem({});
   };
   return (
     <AppContext.Provider
@@ -29,6 +35,12 @@ function AppProvider({ children }) {
         setAdd,
         update,
         setUpdate,
+        item,
+        setItem,
+        status,
+        setStatus,
+        packed,
+        setPacked,
         clearState,
       }}
     >

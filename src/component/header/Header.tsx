@@ -23,12 +23,12 @@ const Header = () => {
             placeholder="Search"
             className={cx("header-right-search")}
           />
-          <div>
-            <MailOutlined style={{ fontSize: 24 }} />
-            <BellOutlined style={{ fontSize: 24 }} />
+          <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+            <MailOutlined style={{ fontSize: 24 }}/>
+            <BellOutlined style={{ fontSize: 24, marginLeft: 40 }} />
             <Avatar
               src={require("../../assentce/Frame 54.png")}
-              style={{ fontSize: 24 }}
+              style={{ fontSize: 24, marginLeft: 40 }}
             />
           </div>
         </Col>

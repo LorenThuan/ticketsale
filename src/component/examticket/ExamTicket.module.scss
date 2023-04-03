@@ -1,67 +1,98 @@
 .wrap_ListSK {
-    background-color: white;
-    height: 85vh;
-    border-radius: 24px;
-    padding: 15px;
-  }
-  .nav-tabs .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    color: coral !important;
-    background-color: var(--bs-nav-tabs-link-active-bg);
-    border-color: var(--bs-nav-tabs-link-active-border-color);
-  }
-  .ListSK-search {
-    width: 40%;
-  }
-  .ListSK-filter {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .btnChot {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 153, 60, 1);
-    border: 2px solid rgba(255, 153, 60, 1);
-    padding: 5px;
-    border-radius: 10px;
-  }
-  .btnChot_txt {
-    font-size: 18px;
-    margin-bottom: 0px;
-    margin-left: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  .state_txt {
-    font-size: 18px;
-    margin-bottom: 0px;
-    color: rgb(208 219 230);
-  }
-  .wrap_Table {
-    background-color: rgba(241, 244, 248, 1);
-  }
-  .tblSk {
-    margin-top: 15px;
-  }
-  .wrap_state {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(234, 241, 248, 1);
-    padding: 2px;
-    border-radius: 10px;
-    background-color: rgba(234, 241, 248, 1);
-  }
-  .wrap_Table_txt {
-    color: rgba(165, 168, 177, 1);
-  }
+  background-color: white;
+  height: 85vh;
+  border-radius: 24px;
+  padding: 15px;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: coral !important;
+  background-color: var(--bs-nav-tabs-link-active-bg);
+  border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+.ListSK-search {
+  width: 40%;
+}
+.ListSK-filter {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btnChot {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 153, 60, 1);
+  border: 2px solid rgba(255, 153, 60, 1);
+  padding: 5px;
+  border-radius: 10px;
+}
+.btnXuat {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  // background-color: rgba(255, 153, 60, 1);
+  border: 2px solid rgba(255, 153, 60, 1);
+  padding: 5px;
+  border-radius: 10px;
+}
+.btnXuat_txt {
+  font-size: 18px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color: rgba(255, 153, 60, 1);
+  cursor: pointer;
+}
+.btnChot_txt {
+  font-size: 18px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color: white;
+  cursor: pointer;
+}
+.state_txt {
+  font-size: 18px;
+  margin-bottom: 0px;
+  color: rgb(208 219 230);
+}
+.wrap_Table {
+  background-color: rgba(241, 244, 248, 1);
+}
+.tblSk {
+  margin-top: 15px;
+}
+.wrap_state {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(234, 241, 248, 1);
+  padding: 2px;
+  border-radius: 10px;
+  background-color: rgba(234, 241, 248, 1);
+}
+.wrap_Table_txt {
+  color: rgba(165, 168, 177, 1);
+}
+.wrap_Table_txtD {
+  color: red;
+}
+.rowHover {
+  cursor: pointer;
+}
+.selected {
+  background-color: blue;
+  color: white;
+}
+
+.wrap_font-size {
+  font-size: 13px;
+}

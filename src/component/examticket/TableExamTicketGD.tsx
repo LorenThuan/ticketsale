@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Table from "react-bootstrap/Table";
 import styles from "./ExamTicket.module.scss";
 import classnames from "classnames/bind";
+import { AppContext } from "../context/AppProvider";
 const cx = classnames.bind(styles);
+interface TicketsIn {
+  NamePacke?: string;
+  dateUsed?: string;
+  gateCheck?: string;
+  idVe?: string;
+  nameSK: string;
+  priceVe: number;
+  stateUsed: string;
+}
+type Props = { data: TicketsIn[] };
+const TableExamTicketGD = (props: Props) => {
+  const { setItem } = useContext(AppContext);
 
-const TableExamTicketGD = () => {
+  const [active, setActive] = useState<number>();
+
+  const setActiveRow = (index: number, item: TicketsIn) => {
+    setItem(item);
+    setActive(index);
+  };
+  // console.log(props.data);
+
   const handleShow = () => {
     console.log(123);
   };
@@ -22,14 +42,28 @@ const TableExamTicketGD = () => {
           </tr>
         </thead>
         <tbody>
-          <tr onDoubleClick={handleShow}>
-            <td>1</td>
-            <td>123456789034</td>
-            <td>14/04/2021</td>
-            <td>Vé cổng</td>
-            <td>Cổng 1</td>
-            <td className={cx("wrap_Table_txt")}>Chưa đối soát</td>
-          </tr>
+        {props.data?.map((item: TicketsIn, index) => (
+            <tr
+              key={index}
+              className={`${styles.rowHover} ${
+                active === index ? styles.selected : ""
+              }`}
+              onClick={() => {
+                setActiveRow(index, item);
+              }}
+            >
+              <td>{index}</td>
+              <td>{item.idVe}</td>
+              <td>{item.dateUsed}</td>
+              <td>Vé cổng</td>
+              <td>{item.gateCheck}</td>
+              {item.stateUsed === "true" ? (
+                <td className={cx("wrap_Table_txtD")}>Đã đối soát</td>
+              ) : (
+                <td className={cx("wrap_Table_txt")}>Chưa đối soát</td>
+              )}
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>

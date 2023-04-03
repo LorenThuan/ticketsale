@@ -31,12 +31,12 @@ const ListTicket = () => {
         <Nav variant="tabs" defaultActiveKey="/">
           <Nav.Item>
           <Nav.Link onClick={handleChangePacked} active={packed}>
-              Gói sự kiện
+              Gói gia đình
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
           <Nav.Link onClick={handleChangePacked} active={!packed}>
-              Gói gia đình
+              Gói sự kiện
             </Nav.Link>
           </Nav.Item>
         </Nav>
@@ -56,8 +56,9 @@ const ListTicket = () => {
         </div>
       </div>
       <div className={cx("tblSk")}>
-      {packed ? <TableListSK /> : <TableListGD />}
+      {packed ? <TableListGD /> : <TableListSK />}
       </div>
+      <ModalFilter/>
     </Container>
   );
 };
