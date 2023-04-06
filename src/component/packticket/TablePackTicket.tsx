@@ -24,7 +24,7 @@ interface TicketsIn {
 type Props = { data: TicketsIn[] | null };
 
 const TablePackTicket = (props: Props) => {
-  const { setUpdate, update } = useContext(AppContext);
+  const { setUpdate, update, setItemDownload } = useContext(AppContext);
   const [item, setItem] = useState<TicketsIn>({
     id: "",
     nameTick: "",
@@ -33,12 +33,17 @@ const TablePackTicket = (props: Props) => {
     price: 0,
     priceCombo: 0,
     amoutCombo: 0,
-    state: true,
+    state: false,
   });
   const handleShow = (item: TicketsIn) => {
     setUpdate(true);
     setItem(item);
   };
+
+  useEffect(() => {
+      setItemDownload(props.data);
+  }, [])
+  
 
   // console.log(props.data);
   // props.data?.map((item) => {

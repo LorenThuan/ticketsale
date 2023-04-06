@@ -12,6 +12,9 @@ function AppProvider({ children }) {
   const [active, setActive] = useState("QuanLy");
   const [packed, setPacked] = useState(true);
 
+  const [itemDownload, setItemDownload] = useState([
+  ]);
+
   const clearState = () => {
     setShow(false);
     setAdd(false);
@@ -21,6 +24,7 @@ function AppProvider({ children }) {
     setStatus("");
     setchangeDate(false);
     setItem({});
+    setItemDownload([]);
   };
   return (
     <AppContext.Provider
@@ -42,6 +46,8 @@ function AppProvider({ children }) {
         packed,
         setPacked,
         clearState,
+        itemDownload,
+        setItemDownload
       }}
     >
       {children}

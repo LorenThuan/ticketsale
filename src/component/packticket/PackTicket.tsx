@@ -15,6 +15,7 @@ import { Action } from "@remix-run/router";
 import TodoSlice, { getPackTicket } from "../reudux/slices/TodoSlice";
 // import { useAppDispatch } from "../reudux/store";
 import { useAppDispatch, useAppSelector } from "../reudux/hook";
+import { CSVLink } from "react-csv";
 
 interface TicketsIn {
   id?: string;
@@ -32,12 +33,14 @@ const { Search } = Input;
 
 const cx = classnames.bind(styles);
 const PackTicket = () => {
-  const { setAdd } = useContext(AppContext);
+  const { setAdd, itemDownload } = useContext(AppContext);
+
   
   const [packed, setPacked] = useState<Boolean>(true);
   // const [Tickets, setTickets] = useState<TicketsIn[] | null>([]);
   const dispatch = useAppDispatch();
   const Tickets = useAppSelector((state: any) => state.TodoTicket.packedTicket);
+  const [csv, setCSV] = useState<[] | any>([]);
 
   const handleAdd = () => {
     setAdd(true);
@@ -46,11 +49,37 @@ const PackTicket = () => {
     setPacked(!packed);
   };
 
+  var csvDataTicketPacked: any = [];
+
   useEffect(() => {
     dispatch(getPackTicket());
   }, [dispatch, Tickets]);
-    
 
+    
+  const headers = [
+    { label: "STT", key: "serial" },
+    { label: "Mã gói", key: "idTick" },
+    { label: "Tên gói vé", key: "nameTick" },
+    { label: "Ngày áp dụng", key: "dataUse" },
+    { label: "Ngày hết hạn", key: "dateOutUse" },
+    { label: "Giá vé (VNĐ/Vé)", key: "price" },
+    { label: "Giá Combo (VNĐ/Combo)", key: "priceCombo" },
+    { label: "Tình trạng", key: "state"},
+  ];
+
+  const csvDownload = Tickets.map((item: any, index: number) => {
+    return {
+      ...item,
+      serial: index,
+      idTick: item.id.slice(1),
+      state: item.state === true ? "Đang Sử Dụng" : "Tắt",
+    };
+  });
+
+  const csvReport = {
+    data: csvDownload,
+    headers: headers,
+  };
 
   return (
     <Container fluid className={cx("wrap_ListSK")}>
@@ -60,7 +89,7 @@ const PackTicket = () => {
         <Search placeholder="Tìm bằng số vé" className={cx("ListSK-search")} />
         <div className={cx("btn")}>
           <div className={cx("btnFile")}>
-            <h5 className={cx("btnLoc_txt")}>Xuất File(.csv)</h5>
+            <CSVLink className={cx("btnLoc_txt")} {...csvReport} separator=";">Xuất File(.csv)</CSVLink>
           </div>
           <div className={cx("btnAdd")} onClick={handleAdd}>
             <h5 className={cx("btnAdd_txt")}>Thêm gói vé</h5>
