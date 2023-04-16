@@ -9,26 +9,17 @@ import { FilterOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import TableExamTicketSK from "./TableExamTicketSK";
 import TableExamTicketGD from "./TableExamTicketGD";
-import {
-  getDatabase,
-  get,
-  child,
-  ref,
-  push,
-  query,
-  orderByChild,
-} from "firebase/database";
 import { AppContext } from "../context/AppProvider";
 import { dataref } from "../lib/Firebase";
-import { useAppDispatch, useAppSelector } from "../reudux/hook";
-import TodoSlice, { getListTickets } from "../reudux/slices/TodoSlice";
+import { useAppDispatch, useAppSelector } from "../redux-manager/hook";
+import TodoSlice, { getListTickets } from "../redux-manager/slices/TodoSlice";
 import {
   todoRemainingSelector,
   todoRemainingSelectorSK,
-} from "../reudux/selector";
+} from "../redux-manager/selector";
 
 import { useSelector } from "react-redux";
-import FilterSlice from "../reudux/slices/FilterSlice";
+import FilterSlice from "../redux-manager/slices/FilterSlice";
 
 interface TicketsIn {
   NamePacke?: string;
@@ -46,11 +37,14 @@ const ExamTicket = () => {
     const Tickets = useSelector(todoRemainingSelector);
     const TicketSKs = useSelector(todoRemainingSelectorSK);
     // console.log(Tickets);
+    const ListTicket = useSelector((state: any) => state.TodoTicket.listTicket);
     // const [Tickets, setTickets] = useState<TicketsIn[]>([]);
     // const [TicketSKs, setTicketSKs] = useState<TicketsIn[]>([]);
     const [search, setSearch] = useState<string>("");
     const { item, status, packed, setPacked } = useContext(AppContext);
     const dispatch = useAppDispatch();
+
+    console.log(ListTicket);
 
   const handleChangePacked = () => {
     setPacked(!packed);
@@ -58,7 +52,7 @@ const ExamTicket = () => {
 
   useEffect(() => {
     dispatch(getListTickets());
-  }, [dispatch]);
+  }, [dispatch, ListTicket]);
 
   const handleCheck = () => {
     dispatch(TodoSlice.actions.CheckListTicket(item));
@@ -110,9 +104,10 @@ const ExamTicket = () => {
       </div>
       <div className={cx("tblSk")}>
         {packed ? (
-          <TableExamTicketSK data={TicketSKs} />
+            <TableExamTicketGD data={Tickets} />
         ) : (
-          <TableExamTicketGD data={Tickets} />
+          
+          <TableExamTicketSK data={TicketSKs} />
         )}
       </div>
     </Container>

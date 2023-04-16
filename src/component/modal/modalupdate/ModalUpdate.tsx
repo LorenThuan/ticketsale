@@ -9,7 +9,7 @@ import classNames from "classnames/bind";
 import { getDatabase, ref, child, push, update } from "firebase/database";
 import { dataref } from "../../lib/Firebase";
 import { useDispatch } from "react-redux";
-import TodoSlice from "../../reudux/slices/TodoSlice";  
+import TodoSlice from "../../redux-manager/slices/TodoSlice";  
 interface TicketsIn {
   id?: string;
   nameTick?: string;

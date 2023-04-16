@@ -12,9 +12,10 @@ import TablePackTicket from "./TablePackTicket";
 import ModalAdd from "../modal/modal add/ModalAdd";
 // import { useSelector } from "react-redux";
 import { Action } from "@remix-run/router";
-import TodoSlice, { getPackTicket } from "../reudux/slices/TodoSlice";
+import TodoSlice, { getPackTicket } from "../redux-manager/slices/TodoSlice";
 // import { useAppDispatch } from "../reudux/store";
-import { useAppDispatch, useAppSelector } from "../reudux/hook";
+import { useAppDispatch, useAppSelector } from "../redux-manager/hook";
+import { useSelector, useDispatch } from "react-redux";
 import { CSVLink } from "react-csv";
 
 interface TicketsIn {
@@ -33,12 +34,12 @@ const { Search } = Input;
 
 const cx = classnames.bind(styles);
 const PackTicket = () => {
-  const { setAdd, itemDownload } = useContext(AppContext);
+  const { setAdd } = useContext(AppContext);
 
   
   const [packed, setPacked] = useState<Boolean>(true);
   // const [Tickets, setTickets] = useState<TicketsIn[] | null>([]);
-  const dispatch = useAppDispatch();
+  const dispatch: any = useDispatch();
   const Tickets = useAppSelector((state: any) => state.TodoTicket.packedTicket);
   const [csv, setCSV] = useState<[] | any>([]);
 

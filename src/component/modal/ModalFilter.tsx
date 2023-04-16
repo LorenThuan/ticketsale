@@ -6,11 +6,26 @@ import Col from "react-bootstrap/esm/Col";
 import { AppContext } from "../context/AppProvider";
 import styles from "./Modal.module.scss";
 import classNames from "classnames/bind";
+import { getPackTicket } from "../redux-manager/slices/TodoSlice";
+import FilterSlice from "../redux-manager/slices/FilterSlice";
+import { useDispatch } from "react-redux";
+import { Value } from "sass";
 
 const cx = classNames.bind(styles);
+
+interface Filter {
+  gate: string[];
+}
+
 const ModalFilter: React.FC = () => {
   const { show, setShow } = useContext(AppContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [dateFrom, setdateFrom] = useState("");
+  const [dateTo, setdateTo] = useState("");
+  const [status, setStatus] = useState("");
+
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setShow(true);
@@ -22,6 +37,53 @@ const ModalFilter: React.FC = () => {
 
   const handleCancel = () => {
     setShow(false);
+  };
+
+  const handleDateFrom = (e: any) => {
+    setdateFrom(e.target.value);
+    dispatch(FilterSlice.actions.DateFrom(e.target.value));
+  };
+  const handleDateTo = (e: any) => {
+    setdateTo(e.target.value);
+    dispatch(FilterSlice.actions.DateTo(e.target.value));
+  };
+
+  const handleStatus = (e: any) => {
+    setStatus(e.target.value);
+    dispatch(FilterSlice.actions.StatusList(e.target.value));
+  };
+  const initFilter: Filter = {
+    gate: [],
+    // khởi tạo các thuộc tính khác
+  };
+  const [filter, setFilter] = useState<Filter>(initFilter);
+
+  const handleCheck = (type: any, checked: any, item: string) => {
+    if (checked) {
+      switch (type) {
+        case "GATE":
+          if (item === "") {
+            setFilter({ ...filter, gate: [""] });
+
+            dispatch(FilterSlice.actions.Gate([]));
+          } else {
+            setFilter({ ...filter, gate: [...filter.gate, item] });
+            dispatch(FilterSlice.actions.Gate([...filter.gate, item]));
+          }
+          break;
+        default:
+      }
+    } else {
+      switch (type) {
+        case "GATE":
+          const newGate = filter.gate.filter((e) => e !== item);
+          setFilter({ ...filter, gate: newGate });
+          dispatch(FilterSlice.actions.Gate(newGate));
+
+          break;
+        default:
+      }
+    }
   };
 
   return (
@@ -56,27 +118,26 @@ const ModalFilter: React.FC = () => {
           <Row>
             <Col>
               <p>Từ ngày</p>
-              <input type="date" />
+              <input type="date" value={dateFrom} onChange={handleDateFrom} />
             </Col>
             <Col>
               <p>Đến ngày</p>
-              <input type="date" />
+              <input type="date" value={dateTo} onChange={handleDateTo} />
             </Col>
           </Row>
           <Row className={cx("radioModal")}>
             <h6>Tình Trạng sử dụng</h6>
-            <Radio.Group>
-              <Radio value="All" style={{ fontSize: 16 }}>
+            <Radio.Group value={status} onChange={handleStatus}>
+              <Radio value="" style={{ fontSize: 16 }}>
                 Tất cả
               </Radio>
-              <Radio value="Completed" style={{ fontSize: 16 }}>
+              <Radio value="true" style={{ fontSize: 16 }}>
                 Đã sử dụng
               </Radio>
-              <Radio value="Todo" style={{ fontSize: 16 }}>
-                {" "}
+              <Radio value="false" style={{ fontSize: 16 }}>
                 Chưa sử dụng
               </Radio>
-              <Radio value="No" style={{ fontSize: 16 }}>
+              <Radio value="het" style={{ fontSize: 16 }}>
                 Hết hạn
               </Radio>
             </Radio.Group>
@@ -85,16 +146,67 @@ const ModalFilter: React.FC = () => {
             <h6>Cổng check-in</h6>
             <div>
               <Col className={cx("checkModal")}>
-                <Checkbox style={{ fontSize: 16, marginRight: 8 }}>
-                  Tất cả{" "}
+              <Checkbox
+                  style={{ fontSize: 16, marginRight: 8 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "");
+                  }}
+                  checked={filter.gate.includes("")}
+                >
+                  Tất cả
                 </Checkbox>
-                <Checkbox style={{ fontSize: 16 }}>Cổng 1</Checkbox>
-                <Checkbox style={{ fontSize: 16 }}>Cổng 2</Checkbox>
+                <Checkbox
+                  style={{ fontSize: 16 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "Cổng 1");
+                  }}
+                  checked={filter.gate.includes("Cổng 1")}
+                  disabled={filter.gate.includes("")}
+                >
+                  Cổng 1
+                </Checkbox>
+                <Checkbox
+                  style={{ fontSize: 16 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "Cổng 2");
+                  }}
+                  checked={filter.gate.includes("Cổng 2")}
+                  disabled={filter.gate.includes("")}
+                >
+                  Cổng 2
+                </Checkbox>
               </Col>
               <Col className={cx("checkModal")}>
-                <Checkbox style={{ fontSize: 16 }}>Cổng 3</Checkbox>
-                <Checkbox style={{ fontSize: 16 }}>Cổng 4</Checkbox>
-                <Checkbox style={{ fontSize: 16 }}>Cổng 5</Checkbox>
+              <Checkbox
+                  style={{ fontSize: 16 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "Cổng 3");
+                  }}
+                  checked={filter.gate.includes("Cổng 3")}
+                  disabled={filter.gate.includes("")}
+                >
+                  Cổng 3
+                </Checkbox>
+                <Checkbox
+                  style={{ fontSize: 16 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "Cổng 4");
+                  }}
+                  checked={filter.gate.includes("Cổng 4")}
+                  disabled={filter.gate.includes("")}
+                >
+                  Cổng 4
+                </Checkbox>
+                <Checkbox
+                  style={{ fontSize: 16 }}
+                  onChange={(e) => {
+                    handleCheck("GATE", e.target.checked, "Cổng 5");
+                  }}
+                  checked={filter.gate.includes("Cổng 5")}
+                  disabled={filter.gate.includes("")}
+                >
+                  Cổng 5
+                </Checkbox>
               </Col>
             </div>
           </div>

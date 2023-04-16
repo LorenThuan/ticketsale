@@ -19,7 +19,7 @@ const TableExamTicketGD = (props: Props) => {
 
   const [active, setActive] = useState<number>();
 
-  const setActiveRow = (index: number, item: TicketsIn) => {
+  const setActiveRow = (index: number, item: any) => {
     setItem(item);
     setActive(index);
   };
@@ -42,7 +42,7 @@ const TableExamTicketGD = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-        {props.data?.map((item: TicketsIn, index) => (
+        {props.data?.map((item: any, index) => (
             <tr
               key={index}
               className={`${styles.rowHover} ${
@@ -57,10 +57,14 @@ const TableExamTicketGD = (props: Props) => {
               <td>{item.dateUsed}</td>
               <td>Vé cổng</td>
               <td>{item.gateCheck}</td>
-              {item.stateUsed === "true" ? (
+              {item.stateUsed === "true1" ? (
                 <td className={cx("wrap_Table_txtD")}>Đã đối soát</td>
               ) : (
-                <td className={cx("wrap_Table_txt")}>Chưa đối soát</td>
+                <td>
+                  {item.stateUsed === "false1" ? (
+                    <div className={cx("wrap_Table_txt")}>Chưa đối soát</div>
+                  ) : null}
+                </td>
               )}
             </tr>
           ))}

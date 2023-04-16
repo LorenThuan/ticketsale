@@ -31,7 +31,7 @@ const Menubar = () => {
   };
   const handlePageCheck = () => {
     setActive("Doi");
-    navigate("/checkTicket");
+    navigate("/check-ticket");
   };
 
   return (

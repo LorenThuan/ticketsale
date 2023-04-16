@@ -1,6 +1,19 @@
 .wrap_home {
     background-color: white;
     border-radius: 24px;
-    height: 85vh;
+    height: 100vh;
     padding: 15px;
+}
+
+.wrap_label_sum {
+    color: #1E0D03;
+}   
+
+.wrap_sum {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrap_money {
+    font-weight: 700;
 }

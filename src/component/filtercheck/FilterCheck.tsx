@@ -4,10 +4,10 @@ import classNames from "classnames/bind";
 
 import { Input, Select, Radio, Button, Space } from "antd";
 import { AppContext } from "../context/AppProvider";
-import FilterSlice from "../reudux/slices/FilterSlice";
+import FilterSlice from "../redux-manager/slices/FilterSlice";
 import { useDispatch } from "react-redux";
-import { useAppSelector, useAppDispatch } from "../reudux/hook";
-import { getPackTicket } from "../reudux/slices/TodoSlice";
+import { useAppSelector, useAppDispatch } from "../redux-manager/hook";
+import { getPackTicket } from "../redux-manager/slices/TodoSlice";
 
 const cx = classNames.bind(styles);
 const FilterCheck = () => {

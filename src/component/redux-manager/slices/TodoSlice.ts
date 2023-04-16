@@ -4,9 +4,12 @@ import { dataref } from "../../lib/Firebase";
 interface State {
   packedTicket: any;
   listTicket: any;
-
-  // các thuộc tính khác nếu có
 }
+
+interface Data {
+  data: any;
+}
+
 export interface Action {
   type: string;
   payload?: any;
@@ -102,11 +105,13 @@ const TodoSlice = createSlice({
           gateCheck: action.payload.gate,
           // idPacked: action.payload.id,
           NamePacke: action.payload.nameTick,
-          stateUsed: action.payload.state === false ? "undefine" : "false",
+          stateUsed: action.payload.state === false ? "het" : "false1",
           priceVe:
             action.payload.price === ""
               ? action.payload.priceCombo
               : action.payload.price,
+              // id: action.payload.id,
+              datePublish: action.payload.dataUse,
         })
         .catch(alert);
     },
@@ -122,8 +127,20 @@ const TodoSlice = createSlice({
 
       dataref
         .ref("ListTickets/" + action.payload.idVe)
-        .update({ ...action.payload, stateUse: "true", dateUsed: dateString })
+        .update({ ...action.payload, stateUsed: "true1", dateUsed: dateString })
         .catch(alert);
+
+        const data: any = state.listTicket.map((item: any) => {
+          if (item.idVe === action.payload.idVe) {
+            return {
+              ...item,
+              stateUsed: "true1",
+              dateUsed: dateString,
+            };
+          }
+          return item;
+        });
+        state.listTicket = data;
     },
   },
   extraReducers: (builder) => {
@@ -133,8 +150,11 @@ const TodoSlice = createSlice({
       };
     });
     builder.addCase(getPackTicket.fulfilled, (state, action: Action) => {
-      // console.log(action.payload);
-      state.packedTicket = action.payload;
+      if (
+        JSON.stringify(state.packedTicket) !== JSON.stringify(action.payload)
+      ) {
+        state.packedTicket = action.payload;
+      }
       // return {
       //   ...state,
       //     packedTicket:action.payload
@@ -154,7 +174,15 @@ const TodoSlice = createSlice({
     builder.addCase(
       getListTickets.fulfilled,
       (state: State, action: Action) => {
-        state.listTicket = action.payload;
+        console.log(
+          JSON.stringify(state.listTicket) !== JSON.stringify(action.payload)
+        );
+
+        if (
+          JSON.stringify(state.listTicket) !== JSON.stringify(action.payload)
+        ) {
+          state.listTicket = action.payload;
+        }
       }
     );
     builder.addCase(getListTickets.rejected, (state, action) => {

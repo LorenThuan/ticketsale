@@ -24,7 +24,7 @@ interface TicketsIn {
 type Props = { data: TicketsIn[] | null };
 
 const TablePackTicket = (props: Props) => {
-  const { setUpdate, update, setItemDownload } = useContext(AppContext);
+  const { setUpdate, update } = useContext(AppContext);
   const [item, setItem] = useState<TicketsIn>({
     id: "",
     nameTick: "",
@@ -39,10 +39,6 @@ const TablePackTicket = (props: Props) => {
     setUpdate(true);
     setItem(item);
   };
-
-  useEffect(() => {
-      setItemDownload(props.data);
-  }, [])
   
 
   // console.log(props.data);
@@ -80,11 +76,18 @@ const TablePackTicket = (props: Props) => {
                 }).format(item.price)}
               </td>
               <td>
-                {new Intl.NumberFormat("de-DE", {
-                  style: "currency",
-                  currency: "VND",
-                }).format(item.priceCombo)}{" "}
-                /{item.amoutCombo} Vé
+                {item.priceCombo === 0 ? (
+                    <div></div>             
+                ) :
+                  (
+                    <div>
+                      {new Intl.NumberFormat("de-DE", {
+                      style: "currency",
+                      currency: "VND",
+                    }).format(item.priceCombo)}{" "}
+                    /{item.amoutCombo} Vé
+                    </div>
+                )}
               </td>
               <td>
                 {item.state ? (

@@ -7,7 +7,7 @@ import CheckTicket from "../pages/checkticket/CheckTicket";
 const publicRoutes = [
   { path: "/", component: ListTicket },
   { path: "/setting", component: ServicePack },
-  { path: "/checkTicket", component: CheckTicket },
+  { path: "/check-ticket", component: CheckTicket },
   { path: "/home", component: Homepage },
 ];
 

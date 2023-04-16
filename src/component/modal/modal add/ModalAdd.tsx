@@ -12,7 +12,7 @@ import { dataref } from "../../lib/Firebase";
 // import { v4 as uuidv4 } from "uuid";
 import { child, getDatabase, ref, get, push } from "firebase/database";
 import { useDispatch } from "react-redux";
-import TodoSlice from "../../reudux/slices/TodoSlice";
+import TodoSlice from "../../redux-manager/slices/TodoSlice";
 
 interface TicketsIn {
   // id?: string | null;
@@ -30,7 +30,7 @@ interface TicketsIn {
 const cx = classNames.bind(styles);
 const ModalAdd: React.FC = () => {
   const dbRef = ref(getDatabase());
-  const { add, setAdd } = useContext(AppContext);
+  const { add, setAdd, itemDownload } = useContext(AppContext);
 
   const [checkOne, setCheckOne] = useState<boolean>(false);
   const [checkMulti, setCheckMulti] = useState<boolean>(false);
@@ -49,6 +49,8 @@ const ModalAdd: React.FC = () => {
     gate: "Cổng 1",
   });
 
+  const tickets: TicketsIn = {};
+
   const handleAdd = () => {
     // const db = getDatabase();
     // const idK = push(ref(db, "TicketPacked")).key;
@@ -57,9 +59,12 @@ const ModalAdd: React.FC = () => {
     // data.set({ ...Tickets, id: data.key }).catch(alert);
     // console.log(Tickets);
     dispatch(TodoSlice.actions.addPackTicket(Tickets));
-    for (let i = 0; i < 3; i++) {
-      dispatch(TodoSlice.actions.addListTicket(Tickets));
+    if (Tickets && typeof Tickets?.amoutCombo === 'number') {
+      for (let i = 0; i < Tickets?.amoutCombo; i++) {
+        dispatch(TodoSlice.actions.addListTicket(Tickets));
+      }
     }
+
   };
 
   const showModal = () => {

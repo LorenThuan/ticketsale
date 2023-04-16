@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./ListTicket.module.scss";
 import classnames from "classnames/bind";
 import { Container } from "react-bootstrap";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
 import Nav from "react-bootstrap/Nav";
 import { FilterOutlined } from "@ant-design/icons";
 import { Input } from "antd";
@@ -11,12 +9,26 @@ import TableListSK from "./TableListSK";
 import ModalFilter from "../modal/ModalFilter";
 import { AppContext } from "../context/AppProvider";
 import TableListGD from "./TableListGD";
+import ModalChangedate from "../modal/modalchangedate/ModalChangedate";
+import { useSelector, useDispatch } from "react-redux";
+import TodoSlice, { getListTickets } from "../redux-manager/slices/TodoSlice";
+import {
+  todoRemainingSelector,
+  todoRemainingSelectorSK,
+} from "../redux-manager/selector";
+import { useAppDispatch } from "../redux-manager/hook";
 const { Search } = Input;
 
 const cx = classnames.bind(styles);
 const ListTicket = () => {
+  const Tickets = useSelector(todoRemainingSelector);
+  const TicketSKs = useSelector(todoRemainingSelectorSK);
+
   const { setShow } = useContext(AppContext);
   const [packed, setPacked] = useState(true);
+  const dispatch = useAppDispatch();
+
+  // console.log(Tickets);
 
   const handleShow = () => {
     setShow(true);
@@ -24,6 +36,13 @@ const ListTicket = () => {
   const handleChangePacked = () => {
     setPacked(!packed);
   };
+
+  useEffect(() => {
+    dispatch(getListTickets());
+  }, [dispatch]);
+
+  // console.log(Tickets);
+
   return (
     <Container fluid className={cx("wrap_ListSK")}>
       <h3 style={{ fontWeight: "bold" }}>Danh Sách Vé</h3>
@@ -56,7 +75,12 @@ const ListTicket = () => {
         </div>
       </div>
       <div className={cx("tblSk")}>
-      {packed ? <TableListGD /> : <TableListSK />}
+      {packed ? (
+            <TableListGD data={Tickets} />
+            
+          ) : (
+            <TableListSK data={TicketSKs} />
+        )}
       </div>
       <ModalFilter/>
     </Container>

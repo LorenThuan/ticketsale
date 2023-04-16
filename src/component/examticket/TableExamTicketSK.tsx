@@ -19,7 +19,7 @@ const TableExamTicketSK = (props: Props) => {
   const [active, setActive] = useState<number>();
   const { setItem } = useContext(AppContext);
 
-  const setActiveRow = (index: number, item: TicketsIn) => {
+  const setActiveRow = (index: number, item: any) => {
     setItem(item);
     setActive(index);
   };
@@ -42,7 +42,7 @@ const TableExamTicketSK = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-        {props.data?.map((item: TicketsIn, index) => (
+        {props.data?.map((item: any, index) => (
             <tr
               key={item.idVe}
               className={`${styles.rowHover} ${
@@ -58,7 +58,7 @@ const TableExamTicketSK = (props: Props) => {
               <td>{item.dateUsed}</td>
               <td>Vé cổng</td>
               <td>{item.gateCheck}</td>
-              {item.stateUsed === "true" ? (
+              {item.stateUsed === "true1" ? (
                 <td className={cx("wrap_Table_txtD")}>Đã đối soát</td>
               ) : (
                 <td className={cx("wrap_Table_txt")}>Chưa đối soát</td>

@@ -18,6 +18,11 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.btn > a {
+  text-decoration: none;
+}
+
 .btnAdd {
   display: flex;
   flex-direction: row;

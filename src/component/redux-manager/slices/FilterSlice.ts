@@ -6,6 +6,8 @@ const initialState = {
   dateFrom: "",
   dateTo: "",
   nameSk: "",
+  statusList: "",
+  gate: [],
 };
 
 const FilterSlice = createSlice({
@@ -26,6 +28,12 @@ const FilterSlice = createSlice({
     },
     NameSK: (state, action) => {
       state.nameSk = action.payload;
+    },
+    StatusList: (state, action) => {
+      state.statusList = action.payload;
+    },
+    Gate: (state, action) => {
+      state.gate = action.payload;
     },
   },
 });

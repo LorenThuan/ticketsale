@@ -7,7 +7,17 @@ import ModalChangedate from "../modal/modalchangedate/ModalChangedate";
 
 const cx = classnames.bind(styles);
 
-const TableListSK = () => {
+interface TicketsIn {
+  NamePacke?: string;
+  dateUsed?: string;
+  gateCheck?: string;
+  idVe?: string;
+  nameSK: string;
+  priceVe: number;
+  stateUsed: string;
+}
+type Props = { data: TicketsIn[] };
+const TableListSK = (props: Props) => {
   const { setchangeDate } = useContext(AppContext);
   const handleShow = () => {
     setchangeDate(true);
@@ -29,21 +39,46 @@ const TableListSK = () => {
           </tr>
         </thead>
         <tbody className={cx("wrap_Table_body")}>
-          <tr>
-            <td>1</td>
-            <td>ALT20210501</td>
-            <td>123456789034</td>
-            <td>Hội chợ triển lãm tiêu dùng 2021</td>
-            <td>
-              <div className={cx("wrap_state")}>
-                <img src={require("../../assentce/Ellipse 1.png")} />
-                <h6 className={cx("state_txt")}>Đã sử dụng</h6>
-              </div>
-            </td>
-            <td onClick={handleShow}>14/04/2021</td>
-            <td>14/04/2021</td>
-            <td>Cổng 1</td>
-          </tr>
+        {props.data?.map((item: TicketsIn, index) => (
+            <tr key={item.idVe}>
+              <td>{index}</td>
+              <td>ALT20210501</td>
+              <td>{item.idVe}</td>
+              <td>{item.nameSK}</td>
+              {item.stateUsed === "true1" ? (
+                <td className={cx("wrap_Table_txtD")}>
+                  <div className={cx("wrap_state")}>
+                    <img src={require("../../assentce/Ellipse 1.png")} />
+                    <h6 className={cx("state_txt")}>Đã sử dụng</h6>
+                  </div>
+                </td>
+              ) : (
+                <td>
+                  {item.stateUsed === "false1" ? (
+                    <div className={cx("wrap_stateNot")}>
+                      <img src={require("../../assentce/xanh.png")} />
+                      <h6 className={cx("state_txtNot")}>Chưa sử dụng</h6>
+                    </div>
+                  ) : (
+                    <div className={cx("wrap_stateError")}>
+                      <img src={require("../../assentce/Do.png")} />
+                      <h6 className={cx("state_txtError")}>Hết hạn</h6>
+                    </div>
+                  )}
+                </td>
+                // <td className={cx("wrap_Table_txt")}>
+                //   <div className={cx("wrap_state")}>
+                //     <img src={require("../../assentce/Ellipse 1.png")} />
+                //     <h6 className={cx("state_txt")}>Chưa sử dụng</h6>
+                //   </div>
+                //  </td>
+              )}
+
+              <td>{item.dateUsed}</td>
+              <td>20-215-20</td>
+              <td>{item.gateCheck}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
       <ModalChangedate />

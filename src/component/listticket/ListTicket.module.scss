@@ -77,3 +77,36 @@
   border-radius: 10px;
   background-color: rgba(234, 241, 248, 1);
 }
+
+.wrap_stateNot {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(222, 247, 224, 1);
+  padding: 2px;
+  border-radius: 10px;
+  background-color: rgba(222, 247, 224, 1);
+}
+.state_txtNot {
+  font-size: 18px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color: rgba(3, 172, 0, 1);
+}
+.wrap_stateError {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(248, 235, 232, 1);
+  padding: 2px;
+  border-radius: 10px;
+  background-color: rgba(248, 235, 232, 1);
+}
+.state_txtError {
+  font-size: 18px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color: rgba(253, 89, 89, 1);
+}
