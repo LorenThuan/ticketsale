@@ -64,7 +64,6 @@ const ModalFilter: React.FC = () => {
         case "GATE":
           if (item === "") {
             setFilter({ ...filter, gate: [""] });
-
             dispatch(FilterSlice.actions.Gate([]));
           } else {
             setFilter({ ...filter, gate: [...filter.gate, item] });
@@ -211,7 +210,7 @@ const ModalFilter: React.FC = () => {
             </div>
           </div>
         </div>
-      </Modal>
+      </Modal> 
     </>
   );
 };

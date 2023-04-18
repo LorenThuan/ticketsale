@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Checkbox, Modal } from "antd";
 import { Input, Typography, Radio, Select, Tag, Space } from "antd";
 import Row from "react-bootstrap/esm/Row";
@@ -6,13 +6,9 @@ import Col from "react-bootstrap/esm/Col";
 import { AppContext } from "../../context/AppProvider";
 import styles from "./ModalAdd.module.scss";
 import classNames from "classnames/bind";
-// import { doc, setDoc } from "firebase/firestore";
-// import { db } from "../../fireBase/FireBase";
-import { dataref } from "../../lib/Firebase";
-// import { v4 as uuidv4 } from "uuid";
 import { child, getDatabase, ref, get, push } from "firebase/database";
-import { useDispatch } from "react-redux";
-import TodoSlice from "../../redux-manager/slices/TodoSlice";
+import { useAppDispatch, useAppSelector } from "../../redux-manager/hook";
+import TodoSlice, { getPackTicket } from "../../redux-manager/slices/TodoSlice";
 
 interface TicketsIn {
   // id?: string | null;
@@ -30,11 +26,11 @@ interface TicketsIn {
 const cx = classNames.bind(styles);
 const ModalAdd: React.FC = () => {
   const dbRef = ref(getDatabase());
-  const { add, setAdd, itemDownload } = useContext(AppContext);
+  const { add, setAdd, setRerender, reRender } = useContext(AppContext);
 
   const [checkOne, setCheckOne] = useState<boolean>(false);
   const [checkMulti, setCheckMulti] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [Tickets, setTickets] = useState<TicketsIn | undefined>({
     // id: idK,
@@ -64,8 +60,13 @@ const ModalAdd: React.FC = () => {
         dispatch(TodoSlice.actions.addListTicket(Tickets));
       }
     }
+    setRerender(!reRender);
 
   };
+
+  useEffect(() => {
+    dispatch(getPackTicket());
+  }, [dispatch, Tickets, reRender]);
 
   const showModal = () => {
     setAdd(true);

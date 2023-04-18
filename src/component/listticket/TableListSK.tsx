@@ -15,14 +15,17 @@ interface TicketsIn {
   nameSK: string;
   priceVe: number;
   stateUsed: string;
+  datePublish: string;
 }
 type Props = { data: TicketsIn[] };
 const TableListSK = (props: Props) => {
-  const { setchangeDate } = useContext(AppContext);
-  const handleShow = () => {
+  const { setchangeDate, changeDate, setItemChangDateUse, itemChangDateUse } = useContext(AppContext);
+
+  const showModal = (item: TicketsIn) => {
     setchangeDate(true);
-    console.log(123);
+    setItemChangDateUse(item);
   };
+
   return (
     <div>
       <Table>
@@ -66,22 +69,18 @@ const TableListSK = (props: Props) => {
                     </div>
                   )}
                 </td>
-                // <td className={cx("wrap_Table_txt")}>
-                //   <div className={cx("wrap_state")}>
-                //     <img src={require("../../assentce/Ellipse 1.png")} />
-                //     <h6 className={cx("state_txt")}>Chưa sử dụng</h6>
-                //   </div>
-                //  </td>
               )}
 
-              <td>{item.dateUsed}</td>
-              <td>20-215-20</td>
+              <td onClick={() => {
+                  showModal(item);
+                }}>{item.dateUsed}</td>
+              <td>{item.datePublish}</td>
               <td>{item.gateCheck}</td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <ModalChangedate />
+      {changeDate ? <ModalChangedate/> : null}
     </div>
   );
 };

@@ -20,6 +20,8 @@ import {
 
 import { useSelector } from "react-redux";
 import FilterSlice from "../redux-manager/slices/FilterSlice";
+import Pagination from "../pagination/Pagination";
+
 
 interface TicketsIn {
   NamePacke?: string;
@@ -41,7 +43,13 @@ const ExamTicket = () => {
     // const [Tickets, setTickets] = useState<TicketsIn[]>([]);
     // const [TicketSKs, setTicketSKs] = useState<TicketsIn[]>([]);
     const [search, setSearch] = useState<string>("");
-    const { item, status, packed, setPacked } = useContext(AppContext);
+    const { item, 
+            status, 
+            packed, 
+            setPacked, 
+            reRender, 
+            setRerender } 
+            = useContext(AppContext);
     const dispatch = useAppDispatch();
 
     console.log(ListTicket);
@@ -52,15 +60,26 @@ const ExamTicket = () => {
 
   useEffect(() => {
     dispatch(getListTickets());
-  }, [dispatch, ListTicket]);
+  }, [dispatch, ListTicket, reRender]);
 
   const handleCheck = () => {
     dispatch(TodoSlice.actions.CheckListTicket(item));
+    setRerender(reRender);
   };
   const handleSearch = (e: any) => {
     setSearch(e.target.value);
     dispatch(FilterSlice.actions.Search(e.target.value));
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(9);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentTickets = Tickets.slice(indexOfFirstPost, indexOfLastPost);
+  const currentTicketSks = TicketSKs.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <Container fluid className={cx("wrap_ListSK")}>
@@ -104,12 +123,51 @@ const ExamTicket = () => {
       </div>
       <div className={cx("tblSk")}>
         {packed ? (
-            <TableExamTicketGD data={Tickets} />
+            <TableExamTicketGD data={currentTickets} />
         ) : (
           
-          <TableExamTicketSK data={TicketSKs} />
+          <TableExamTicketSK data={currentTicketSks} />
         )}
       </div>
+
+      {packed ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            bottom: 15,
+            left: "50%",
+          }}
+        >
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={TicketSKs.length}
+            paginate={paginate}
+          />
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            bottom: 15,
+            left: "50%",
+          }}
+        >
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={Tickets.length}
+            paginate={paginate}
+          />
+        </div>
+      )}
+
     </Container>
   );
 };

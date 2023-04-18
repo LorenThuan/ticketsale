@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { DocumentData, onSnapshot, QuerySnapshot } from 'firebase/firestore'
 import Table from "react-bootstrap/Table";
 import styles from "./ListTicket.module.scss";
 import classnames from "classnames/bind";
+import { AppContext } from "../context/AppProvider";
+import ModalChangedate from "../modal/modalchangedate/ModalChangedate";
 const cx = classnames.bind(styles);
 interface TicketsIn {
   NamePacke?: string;
@@ -12,10 +14,20 @@ interface TicketsIn {
   nameSK: string;
   priceVe: number;
   stateUsed: string;
+  datePublish: string;
 }
-type Props = { data: TicketsIn[] };
+
+type Props = { data: TicketsIn[] | null};
 
 const TableListGD = (props: Props) => {
+  const { setchangeDate, changeDate, setItemChangDateUse, itemChangDateUse } = useContext(AppContext);
+
+  const showModal = (item: TicketsIn) => {
+    setchangeDate(true);
+    setItemChangDateUse(item);
+  };
+
+  
    
   return (
     <div>
@@ -36,8 +48,7 @@ const TableListGD = (props: Props) => {
         {props.data?.map((item: TicketsIn, index) => (
             <tr key={index}>
               <td>{index}</td>
-              <td>ALT20210501</td>
-
+              <td>ALT20210501{index}</td>
               <td>{item.idVe}</td>
               {item.stateUsed === "true1" ? (
                 <td>
@@ -62,12 +73,15 @@ const TableListGD = (props: Props) => {
                   )}
                 </td>
               )}
-              <td>{item.dateUsed}</td>
-              <td>23-10-2022</td>
+              <td  onClick={() => {
+                  showModal(item);
+                }}>{item.dateUsed}</td>
+              <td>{item.datePublish}</td>
               <td>{item.gateCheck}</td>
             </tr>
           ))}
         </tbody>
+        {changeDate ? <ModalChangedate/> : null}
       </Table>
     </div>
   );

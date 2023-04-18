@@ -8,6 +8,8 @@ const initialState = {
   nameSk: "",
   statusList: "",
   gate: [],
+  dateToStatiscal: "",
+  dateFromStaticscal: "",
 };
 
 const FilterSlice = createSlice({
@@ -34,6 +36,12 @@ const FilterSlice = createSlice({
     },
     Gate: (state, action) => {
       state.gate = action.payload;
+    },
+    DateFromStatistical: (state, action) => {
+      state.dateFromStaticscal = action.payload;
+    },
+    DateToStatistical: (state, action) => {
+      state.dateToStatiscal = action.payload;
     },
   },
 });

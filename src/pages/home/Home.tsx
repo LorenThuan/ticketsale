@@ -4,10 +4,10 @@ import Menubar from "../../component/menubar/MenuBar";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-import Home from "../../component/home/Home"
 
 import styles from "./Home.module.scss";
 import classnames from "classnames/bind";
+import HomeCustom from "../../component/home/HomeCustom";
 
 const cx = classnames.bind(styles);
 const Homepage = () => {
@@ -19,11 +19,7 @@ const Homepage = () => {
           <Menubar />
         </Col>
         <Col lg={10}>
-          {/* <img
-            // src={require("../../assentce/Chart.png")}
-            // className={cx("img")}
-          /> */}
-          <Home />
+          <HomeCustom />
         </Col>
       </Row>
     </Container>

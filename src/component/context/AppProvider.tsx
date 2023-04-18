@@ -1,99 +1,94 @@
-import React, { useState } from "react";
+import React, { createContext, FC, useState } from "react";
 
-type ItemType = {
-  name: string,
-  quantity: number,
-  packed: boolean,
-  dateAdded: Date
+interface AppContextProps {
+  show: boolean;
+
+  setShow: (show: boolean) => void;
+
+  active: string;
+
+  setActive: (active: string) => void;
+
+  changeDate: boolean;
+
+  setchangeDate: (changeDate: boolean) => void;
+
+  add: boolean;
+
+  setAdd: (add: boolean) => void;
+
+  update: boolean;
+
+  setUpdate: (update: boolean) => void;
+
+  item: object;
+
+  setItem: (item: object) => void;
+
+  itemChangDateUse: object;
+
+  setItemChangDateUse: (itemChangDateUse: object) => void;
+
+  status: string;
+
+  setStatus: (status: string) => void;
+
+  packed: boolean;
+
+  setPacked: (packed: boolean) => void;
+
+  reRender: boolean;
+
+  setRerender: (reRender: boolean) => void;
+
+  clearState: () => void;
 }
 
-type AppProviderProps = {
-  children: React.ReactNode
-}
+export const AppContext = createContext({} as AppContextProps);
 
-type AppContextType = {
-  show: boolean,
-  setShow: (show: boolean) => void,
-  active: string,
-  setActive: (active: string) => void,
-  changeDate: boolean,
-  setchangeDate: (changeDate: boolean) => void,
-  add: boolean,
-  setAdd: (add: boolean) => void,
-  update: boolean,
-  setUpdate: (update: boolean) => void,
-  item: ItemType,
-  setItem: (item: ItemType) => void,
-  status: string,
-  setStatus: (status: string) => void,
-  packed: boolean,
-  setPacked: (packed: boolean) => void,
-  clearState: () => void,
-  itemDownload: ItemType[],
-  setItemDownload: (itemDownload: ItemType[]) => void
-}
-
-export const AppContext = React.createContext<AppContextType>({
-  show: false,
-  setShow: () => undefined,
-  active: "",
-  setActive: () => undefined,
-  changeDate: false,
-  setchangeDate: () => undefined,
-  add: false,
-  setAdd: () => undefined,
-  update: false,
-  setUpdate: () => undefined,
-  item: {
-    name: "",
-    quantity: 0,
-    packed: false,
-    dateAdded: new Date()
-  },
-  setItem: () => undefined,
-  status: "",
-  setStatus: () => undefined,
-  packed: true,
-  setPacked: () => undefined,
-  clearState: () => undefined,
-  itemDownload: [],
-  setItemDownload: () => undefined
-});
-
-function AppProvider({ children }: AppProviderProps) {
+const AppProvider: React.FC<any> = ({ children }) => {
   const [show, setShow] = useState<boolean>(false);
+
   const [changeDate, setchangeDate] = useState<boolean>(false);
+
   const [update, setUpdate] = useState<boolean>(false);
+
   const [add, setAdd] = useState<boolean>(false);
 
   const [status, setStatus] = useState<string>("Tất cả");
-  const [item, setItem] = useState<ItemType>({
-    name: "",
-    quantity: 0,
-    packed: false,
-    dateAdded: new Date()
-  });
+
+  const [item, setItem] = useState<object>({});
+
+  const [itemChangDateUse, setItemChangDateUse] = useState<object>({});
+
   const [active, setActive] = useState<string>("QuanLy");
+
   const [packed, setPacked] = useState<boolean>(true);
 
-  const [itemDownload, setItemDownload] = useState<ItemType[]>([]);
+  const [reRender, setRerender] = useState<boolean>(false);
 
   const clearState = () => {
     setShow(false);
+
     setAdd(false);
+
     setUpdate(false);
+
     setPacked(true);
+
     setActive("");
+
     setStatus("");
+
     setchangeDate(false);
-    setItem({
-      name: "",
-      quantity: 0,
-      packed: false,
-      dateAdded: new Date()
-    });
-    setItemDownload([]);
+
+    setRerender(false);
+
+    setItem({});
+
+    setItemChangDateUse({});
   };
+
   return (
     <AppContext.Provider
       value={{
@@ -109,18 +104,20 @@ function AppProvider({ children }: AppProviderProps) {
         setUpdate,
         item,
         setItem,
+        itemChangDateUse,
+        setItemChangDateUse,
         status,
         setStatus,
         packed,
         setPacked,
+        reRender,
+        setRerender,
         clearState,
-        itemDownload,
-        setItemDownload
       }}
     >
       {children}
     </AppContext.Provider>
   );
-}
+};
 
 export default AppProvider;

@@ -121,6 +121,12 @@ const TodoSlice = createSlice({
         .update(action.payload)
         .catch(alert);
     },
+    updateDateUseTicket(state, action) {
+      dataref
+        .ref("ListTickets/" + action.payload.idVe)
+        .update(action.payload)
+        .catch(alert);
+    },
     CheckListTicket(state, action) {
       var today = new Date();
       const dateString = today.toISOString().slice(0, 10);

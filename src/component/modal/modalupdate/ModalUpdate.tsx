@@ -25,7 +25,7 @@ type Props = { data: TicketsIn };
 
 const cx = classNames.bind(styles);
 const ModalUpdate = (props: Props) => {
-  const { update, setUpdate } = useContext(AppContext);
+  const { update, setUpdate, reRender, setRerender } = useContext(AppContext);
 
   const [Tickets, setTickets] = useState<TicketsIn>({
     id: props.data.id,
@@ -49,18 +49,8 @@ const ModalUpdate = (props: Props) => {
 
   console.log(Tickets);
   const handleUpdate = () => {
-    // setUpdate(false);
-    // const db = getDatabase();
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-    // const updates: any = {};
-    // updates["ListTicket/" + props.data.id] = Tickets;
-
-    // dataref
-    //   .ref("ListTicket/" + props.data.id)
-    //   .update(Tickets)
-    //   .catch(alert);
-    // update(ref(db), updates);
     dispatch(TodoSlice.actions.updatePackTicket(Tickets));
+    setRerender(!reRender);
   };
 
   const handleCancel = () => {
