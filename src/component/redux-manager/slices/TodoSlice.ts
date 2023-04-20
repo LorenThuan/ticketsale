@@ -28,8 +28,7 @@ export const getPackTicket = createAsyncThunk(
           if (snapshot.exists()) {
             let temp: any = [];
             snapshot.forEach((item: any) => {
-              // console.log(item.val());
-              // console.log(item.key);
+
               temp.push(item.val());
               // state.packedTicket.push(item.val());
             });
@@ -58,8 +57,7 @@ export const getListTickets = createAsyncThunk(
           if (snapshot.exists()) {
             let temp: any = [];
             snapshot.forEach((item: any) => {
-              // console.log(item.val());
-              // console.log(item.key);
+
               temp.push(item.val());
             });
 

@@ -40,10 +40,6 @@ const TablePackTicket = (props: Props) => {
     setItem(item);
   };
   
-
-  // console.log(props.data);
-  // props.data?.map((item) => {
-  // });
   
   return (
     <div>

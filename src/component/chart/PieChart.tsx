@@ -46,7 +46,6 @@ const PieChart = (props: Props) => {
     nameSk = item.NamePacke
   })
 
-  console.log(Gd);
   const optionsSK: ApexOptions = {
     chart: {
       width: 400,

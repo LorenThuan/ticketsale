@@ -115,7 +115,6 @@ export const StatiscalGD = createSelector(
     let TicketUseOut: number = 0;
     TodoTicket.listTicket.map((item: any) => {
       if (dateTo.length === 0 && dateFrom.length === 0) {
-        console.log(123);
         if (item.NamePacke === "Gói gia đình") {
           if (item.stateUsed === "true1") {
             // TicketUse += item.priceVe;
@@ -132,7 +131,6 @@ export const StatiscalGD = createSelector(
           new Date(item.datePublish) <= new Date(dateTo) &&
           item.NamePacke === "Gói gia đình"
         ) {
-          console.log(23);
           if (item.stateUsed === "true1") {
             // TicketUse += item.priceVe;
             TicketUse += 1;
@@ -156,7 +154,6 @@ export const StatiscalSKPrice = createSelector(
     let TicketUseOut: number = 0;
     TodoTicket.listTicket.map((item: any) => {
       if (dateTo.length === 0 && dateFrom.length === 0) {
-        console.log(123);
         if (item.NamePacke === "Gói sự kiện") {
           if (item.stateUsed === "true1") {
             TicketUse += item.priceVe;
@@ -170,7 +167,7 @@ export const StatiscalSKPrice = createSelector(
           new Date(item.datePublish) <= new Date(dateTo) &&
           item.NamePacke === "Gói sự kiện"
         ) {
-          console.log(23);
+
           if (item.stateUsed === "true1") {
             TicketUse += item.priceVe
           } else if (item.stateUsed === "false1") {
@@ -192,7 +189,7 @@ export const StatiscalGDPrice = createSelector(
     let TicketUseOut: number = 0;
     TodoTicket.listTicket.map((item: any) => {
       if (dateTo.length === 0 && dateFrom.length === 0) {
-        console.log(123);
+
         if (item.NamePacke === "Gói gia đình") {
           if (item.stateUsed === "true1") {
             TicketUse += item.priceVe;
@@ -206,7 +203,7 @@ export const StatiscalGDPrice = createSelector(
           new Date(item.datePublish) <= new Date(dateTo) &&
           item.NamePacke === "Gói gia đình"
         ) {
-          console.log(23);
+
           if (item.stateUsed === "true1") {
             TicketUse += item.priceVe;
           } else if (item.stateUsed === "false1") {
@@ -228,7 +225,7 @@ export const StatiscalSK = createSelector(
     let TicketUseOut: number = 0;
     TodoTicket.listTicket.map((item: any) => {
       if (dateTo.length === 0 && dateFrom.length === 0) {
-        console.log(123);
+
         if (item.NamePacke === "Gói sự kiện") {
           if (item.stateUsed === "true1") {
             // TicketUse += item.priceVe;
@@ -244,7 +241,7 @@ export const StatiscalSK = createSelector(
           new Date(item.datePublish) <= new Date(dateTo) &&
           item.NamePacke === "Gói sự kiện"
         ) {
-          console.log(23);
+
           if (item.stateUsed === "true1") {
             TicketUse += 1;
           } else if (item.stateUsed === "false1") {
@@ -266,7 +263,7 @@ export const Statiscal = createSelector(
     let TicketUseOut: number = 0;
     TodoTicket.listTicket.map((item: any) => {
       if (dateTo.length === 0 && dateFrom.length === 0) {
-        console.log(123);
+
         if (item.NamePacke === "Gói sự kiện") {
           if (item.stateUsed === "true1") {
             TicketUse += 1;
@@ -280,7 +277,7 @@ export const Statiscal = createSelector(
           new Date(item.datePublish) <= new Date(dateTo) &&
           item.NamePacke === "Gói sự kiện"
         ) {
-          console.log(23);
+
           if (item.stateUsed === "true1") {
             TicketUse += 1;
           } else if (item.stateUsed === "false1") {

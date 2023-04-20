@@ -23,10 +23,9 @@ const TableExamTicketGD = (props: Props) => {
     setItem(item);
     setActive(index);
   };
-  // console.log(props.data);
 
   const handleShow = () => {
-    console.log(123);
+
   };
   return (
     <div>

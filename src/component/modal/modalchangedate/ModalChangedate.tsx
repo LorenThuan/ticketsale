@@ -33,8 +33,6 @@ const ModalChangedate = () => {
 
   const [itemTemp, setItemTemp] = useState<itemChangDateUse | any>(itemChangDateUse)
 
-  console.log(itemChangDateUse);
-  console.log(itemTemp);
   
 
   const [Tickets, setTickets] = useState<itemChangDateUse | undefined>({

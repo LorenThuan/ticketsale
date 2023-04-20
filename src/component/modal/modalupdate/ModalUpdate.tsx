@@ -47,7 +47,6 @@ const ModalUpdate = (props: Props) => {
     setUpdate(true);
   };
 
-  console.log(Tickets);
   const handleUpdate = () => {
     dispatch(TodoSlice.actions.updatePackTicket(Tickets));
     setRerender(!reRender);
@@ -230,7 +229,6 @@ const ModalUpdate = (props: Props) => {
                   <Select
                     defaultValue={props.data.state}
                     onChange={(value: boolean) => {
-                      // console.log(value);
                       setTickets({ ...Tickets, state: value });
                     }}
                   >

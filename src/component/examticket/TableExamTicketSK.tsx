@@ -25,7 +25,6 @@ const TableExamTicketSK = (props: Props) => {
   };
 
   const handleShow = () => {
-    console.log(123);
   };
   return (
     <div>

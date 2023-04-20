@@ -48,12 +48,6 @@ const ModalAdd: React.FC = () => {
   const tickets: TicketsIn = {};
 
   const handleAdd = () => {
-    // const db = getDatabase();
-    // const idK = push(ref(db, "TicketPacked")).key;
-    // // setTickets({ ...Tickets, id: idK });
-    // const data = dataref.ref(`TicketPacked`).push();
-    // data.set({ ...Tickets, id: data.key }).catch(alert);
-    // console.log(Tickets);
     dispatch(TodoSlice.actions.addPackTicket(Tickets));
     if (Tickets && typeof Tickets?.amoutCombo === 'number') {
       for (let i = 0; i < Tickets?.amoutCombo; i++) {
@@ -243,7 +237,6 @@ const ModalAdd: React.FC = () => {
                   <Select
                     defaultValue={true}
                     onChange={(value: boolean) => {
-                      console.log(value);
                       setTickets({ ...Tickets, state: value });
                     }}
                   >

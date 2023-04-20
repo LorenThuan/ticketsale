@@ -6,7 +6,7 @@ import { StatiscalArea } from "../redux-manager/selector";
 import { useSelector } from "react-redux";
 const AreaChart = () => {
   const area = useSelector(StatiscalArea);
-  console.log(area);
+
   const options: ApexOptions = {
     chart: {
       height: 250,

@@ -35,13 +35,12 @@ interface TicketsIn {
 const { Search } = Input;
 const cx = classNames.bind(styles);
 const ExamTicket = () => {
-    // const [packed, setPacked] = useState(true);
+
     const Tickets = useSelector(todoRemainingSelector);
     const TicketSKs = useSelector(todoRemainingSelectorSK);
-    // console.log(Tickets);
+
     const ListTicket = useSelector((state: any) => state.TodoTicket.listTicket);
-    // const [Tickets, setTickets] = useState<TicketsIn[]>([]);
-    // const [TicketSKs, setTicketSKs] = useState<TicketsIn[]>([]);
+
     const [search, setSearch] = useState<string>("");
     const { item, 
             status, 
@@ -51,8 +50,6 @@ const ExamTicket = () => {
             setRerender } 
             = useContext(AppContext);
     const dispatch = useAppDispatch();
-
-    console.log(ListTicket);
 
   const handleChangePacked = () => {
     setPacked(!packed);
